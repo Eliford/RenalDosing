@@ -11,3 +11,4 @@
 *.Rapp.history
 data/
 notebook/
+rsconnect/
