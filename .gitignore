@@ -9,3 +9,5 @@
 *.csv
 *.png
 *.Rapp.history
+data/
+notebook/
