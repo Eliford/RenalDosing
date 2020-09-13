@@ -75,6 +75,14 @@ server =  function(input, output, session){
             swipeToClose = TRUE,
             session = session
         )
-    }) 
+    })
+    
+    #############
+    ##_SESSION_##
+    #############
+    #Close the R session when browser is closed
+    session$onSessionEnded(function() {
+        stopApp()
+    })
 }
 
