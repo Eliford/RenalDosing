@@ -24,24 +24,24 @@ f7Page(
         f7Align(
           f7Block(
             f7Row(
-              f7Col(f7Text(inputId = "patientID", label = "Enter Patient ID", value="M-00-00-00")),
-              f7Col(f7Select(inputId = "sex", label = "Sex", choices = c("Male", "Female"), selected = "Male")) 
+              f7Col(f7Text(inputId = "patientID", label = "Patient ID", value="M-00-00-00")),
+              f7Col(f7Select(inputId = "sex", label = "Patient sex", choices = c("Male", "Female"), selected = "Male")) 
             )
           ),
           side = "left"
         ),
         f7Align(
           f7Block(
-            f7Row(
-              f7Col(f7Stepper(inputId = "age", label = "Age of Patient", min = 18, max = 100, value = 18, 
+            f7Col(
+              f7Row(f7Stepper(inputId = "age", label = "Patient age (Yrs)", min = 18, max = 100, value = 18, 
                               step = 0.1, manual = TRUE, buttonsEndInputMode = FALSE)),
-              f7Col(f7Stepper(inputId = "weight", label = "Weight of Patient(Kg)", min = 30, max = 200, value = 70, 
+              f7Row(f7Stepper(inputId = "weight", label = "Patient weight (Kg)", min = 30, max = 200, value = 70, 
                               step = 0.1, manual = TRUE, buttonsEndInputMode = FALSE)),
-              f7Col(f7Stepper(inputId = "creatinine", label = "Serum Creatinine (umol/l)", min = 110, max = 3000, value = 115,
+              f7Row(f7Stepper(inputId = "creatinine", label = "Serum Creatinine (umol/l)", min = 110, max = 3000, value = 115,
                               step = 0.1, manual = TRUE, buttonsEndInputMode = FALSE))
             )
           ),
-          side = "right"
+          side = "center"
         )
       ),
       footer = f7Block(
