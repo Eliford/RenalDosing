@@ -1,5 +1,16 @@
+#UI and server packages
+library(shiny)
+library(shinyMobile)
+library(DT)
 #database
 library(RSQLite)
+#other R packages
+library(tidyverse)
+
+## Drug look-up tables with dose recommendations 
+drugs<-read_csv("data/drugs.csv")
+antiglycemics <- read_csv("data/antiglycemics.csv")
+statins <- read_csv("data/statins.csv")
 
 #Patient variables for RenFunDB
 patientFields <- c("patientID","age","weight", "creatinine","sex")
@@ -65,4 +76,11 @@ fetch_data <- function(table, path){
 #appDBpath <- "C:/Users/Samsung/Documents/RenalDosing/dose_adjustment/data/RenFunDB"
 #renfundata <- fetch_data(table = "Patients", path = appDBpath)
 
-
+#A function for dose recommendation in patient with renal impairment
+#' @param drug a generic name of a drug to search for dose recommendations
+#' 
+search_dose <- function(drugname){
+  drug_dosing <- drugs %>% filter(drug==drugname) %>% select(3:7)
+  names(drug_dosing) <- c("Name", "Usual dosing", "GFR >= 50", "GFR>=10&GFR<50", "GFR < 10")
+  return(drug_dosing)
+}
