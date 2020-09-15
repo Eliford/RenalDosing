@@ -1,12 +1,3 @@
-library(shiny)
-#library(DT)
-library(tidyverse)
-
-
-#drugs<-read_csv("data/drugs.csv")
-#antiglycemics <- read_csv("data/antiglycemics.csv")
-#statins <- read_csv("data/statins.csv")
-
 # Define server logic required to calculate GFR
 server =  function(input, output, session){
     
@@ -46,7 +37,7 @@ server =  function(input, output, session){
         f7Notif(
             text = comment_on_dose,
             title = "Calculated CRCL (ml/min)",
-            subtitle = "Comment of dose",
+            subtitle = "Comment on dose",
             closeTimeout = 60000,
             closeButton = TRUE,
             closeOnClick = FALSE,
@@ -75,6 +66,13 @@ server =  function(input, output, session){
             swipeToClose = TRUE,
             session = session
         )
+    })
+    
+    observe({
+        invalidateLater(10000)
+        if(!is.null(input$search)){
+            output$searchReport <- renderUI({f7Table(search_dose(input$search), card = TRUE)})
+        }
     })
     
     #############
