@@ -1,6 +1,4 @@
 # remember to check and write in the software log
-library(shiny)
-library(shinyMobile)
 
 f7Page(
   title = "DoseAdjust",
@@ -49,6 +47,15 @@ f7Page(
           f7Col(f7Button(inputId = "calculate", label = "Calculate", size = "small")),
           f7Col(f7Button(inputId = "Submit", label = "Save", size = "small"))
         )
+      )
+    ), #End of first card
+    
+    f7Card(
+      title = "Dose adjustments",
+      f7Block(f7SmartSelect(inputId = "search", label = "Search a drug", choices = drugs$drug, selected = " ",openIn = "popup")),
+      f7Block(uiOutput(outputId = "searchReport")),
+      footer = f7Block(
+        "Table values are percent of usual dose in renal impairment"
       )
     )
   )
